@@ -11,8 +11,7 @@ class MainController extends AbstractController
     {
         return $this->render('main.html.twig',
             [
-                'title' => 'Hello World!',
-                'message' => 'Welcome to my first Symfony 5 application!'
+                'providers' => ['a', 'b', 'c']
             ]
         );
     }

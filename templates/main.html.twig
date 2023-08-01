@@ -4,14 +4,60 @@
     <meta charset="UTF-8">
     <title>Proveedores</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@3.5.0/dist/full.css" rel="stylesheet" type="text/css" />
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
-<h1 class="text-3xl font-bold underline">
-    {{ title }}
-</h1>
-<p class="text-xl">
-    {{ message }}
-</p>
+<div class="navbar bg-base-100">
+    <div class="flex-1">
+        <a class="btn btn-ghost normal-case text-xl">Proveedores</a>
+    </div>
+    <div class="flex-none">
+        <ul class="menu menu-horizontal px-1">
+            <li><a href="./">Lista</a></li>
+            <li>
+                <details>
+                    <summary>
+                        Acciones
+                    </summary>
+                    <ul class="p-2 bg-base-100">
+                        <li><a>Añadir</a></li>
+                        <li><a>Borrar</a></li>
+                    </ul>
+                </details>
+            </li>
+        </ul>
+    </div>
+</div>
+<main class="px-6">
+    <div class="overflow-x-auto">
+        <table class="table table-md">
+            <thead>
+            <tr>
+                <th></th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Type</th>
+                <th>Active</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for provider in providers %}
+            <tr>
+                <th>1</th>
+                <td>Viajes para ti</td>
+                <td>akfn@dfs.a</td>
+                <td>+34 123 45 34 21</td>
+                <td>Hotel</td>
+                <td>YES</td>
+                <td></td>
+            </tr>
+            </tbody>
+            {% endfor %}
+        </table>
+    </div>
+</main>
 </body>
 </html>
