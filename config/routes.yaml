@@ -4,3 +4,11 @@ index:
 new:
     path: /new
     controller: App\Controller\NewProviderController::new
+delete:
+    path: /delete/{id}
+    methods: GET
+    controller: App\Controller\DeleteProviderController::delete
+delete_form:
+    path: /delete/{id}
+    methods: POST
+    controller: App\Controller\DeleteProviderController::delete_formHandler

@@ -20,6 +20,7 @@ class NewProviderController extends AbstractController
     {
         $newProvider = new Provider();
 
+
         $form = $this->createFormBuilder($newProvider)
             ->add('name', TextType::class)
             ->add('email', EmailType::class, ['required' => true])
@@ -40,6 +41,7 @@ class NewProviderController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             // Save the entity to the database
+            $newProvider->setCreatedAt(new \DateTimeImmutable());
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($newProvider);
             $entityManager->flush();

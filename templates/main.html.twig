@@ -32,12 +32,33 @@
             {% endif %}
             <td>{{  provider.createdAt|date("Y-m-d H:i:s") }}</td>
             <td class="w-max">
-                <a href="/providers/{{ provider.id }}/edit" class="btn btn-sm btn-warning">Edit</a>
-                <a href="/providers/{{ provider.id }}/delete" class="btn btn-sm btn-error">Delete</a>
+                <a href="/edit/{{ provider.id }}" class="btn btn-sm btn-warning">Edit</a>
+                <a href="/delete/{{ provider.id }}" class="btn btn-sm btn-error">Delete</a>
             </td>
         </tr>
         </tbody>
         {% endfor %}
     </table>
 </div>
+    <dialog id="delete_modal" class="modal">
+        <form method="GET" action="/delete/{{ app.request.query.get('remove')}}" class="modal-box">
+            <h3 class="font-bold text-lg">Ara you sure?</h3>
+            <p class="py-4">All the provider data will be removed</p>
+            <div class="modal-action">
+                <button type="submit" class="btn btn-error">Delete</button>
+            </div>
+            <p class="text-sm text-right py-3">Pres ESC to cancel</p>
+            <input class="hidden" name="opConfirmed" value="true"/>
+        </form>
+        <form method="dialog" class="modal-backdrop">
+            <button></button>
+        </form>
+    </dialog>
+
+    <script>
+        const remove = new URLSearchParams(window.location.search).get('remove');
+        if (remove) {
+            document.getElementById('delete_modal').showModal();
+        }
+    </script>
 {% endblock %}
