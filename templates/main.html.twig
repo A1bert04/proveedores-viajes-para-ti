@@ -1,57 +1,38 @@
-<!doctype html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>Proveedores</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/daisyui@3.5.0/dist/full.css" rel="stylesheet" type="text/css" />
-    <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body>
-<div class="navbar bg-base-100">
-    <div class="flex-1">
-        <a class="btn btn-ghost normal-case text-xl">Proveedores</a>
-    </div>
-    <div class="flex-none">
-        <ul class="menu menu-horizontal px-1">
-            <li><a href="./">List</a></li>
-            <li><a href="/new">Add</a></li>
-        </ul>
-    </div>
-</div>
-<main class="px-6">
-    <div class="overflow-x-auto">
-        <table class="table table-md">
-            <thead>
-            <tr>
-                <th></th>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Phone</th>
-                <th>Type</th>
-                <th>Active</th>
-                <th>Actions</th>
-            </tr>
-            </thead>
-            <tbody>
-            {% for provider in providers %}
-            <tr>
-                <th>{{ provider.id }}</th>
-                <td>{{ provider.name }}</td>
-                <td>{{provider.email}}</td>
-                <td>{{ provider.phone }}</td>
-                <td>{{ provider.type }}</td>
-                {% if provider.active == 1 %}
+{% extends 'layout.html.twig' %}
+{% block title %}
+    Providers
+{% endblock %}
+{% block content %}
+<div class="overflow-x-auto">
+    <table class="table table-md">
+        <thead>
+        <tr>
+            <th></th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Type</th>
+            <th>Active</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for provider in providers %}
+        <tr>
+            <th>{{ provider.id }}</th>
+            <td>{{ provider.name }}</td>
+            <td>{{ provider.email }}</td>
+            <td>{{ provider.phone }}</td>
+            <td>{{ provider.type }}</td>
+            {% if provider.active == 1 %}
                 <td class="text-lime-500">Yes</td>
-                {% else %}
+            {% else %}
                 <td class="text-red-500">No</td>
-                {% endif %}
-                <td></td>
-            </tr>
-            </tbody>
-            {% endfor %}
-        </table>
-    </div>
-</main>
-</body>
-</html>
+            {% endif %}
+            <td></td>
+        </tr>
+        </tbody>
+        {% endfor %}
+    </table>
+</div>
+{% endblock %}

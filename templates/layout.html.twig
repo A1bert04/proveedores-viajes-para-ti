@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Proveedores</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@3.5.0/dist/full.css" rel="stylesheet" type="text/css"/>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+<div class="navbar bg-base-100">
+    <div class="flex-1">
+        <a class="btn btn-ghost normal-case text-xl">Providers</a>
+    </div>
+    <div class="flex-none">
+        <ul class="menu menu-horizontal px-1">
+            <li><a href="./">List</a></li>
+            <li><a href="/new">Add</a></li>
+        </ul>
+    </div>
+</div>
+<main class="px-6">
+    {% block content %}{% endblock %}
+</main>
+</body>
+</html>
