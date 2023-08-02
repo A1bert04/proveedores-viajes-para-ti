@@ -28,9 +28,15 @@
                 {% else %}
                     <td class="text-red-500">No</td>
                 {% endif %}
-                <td>{{ provider.createdAt|date("Y-m-d H:i:s") }}</td>
-                <td class="w-max">
-                    <a href="/edit/{{ provider.id }}" class="btn btn-sm btn-warning">Edit</a>
+                <td>{{ provider.createdAt|date("d/m/Y H:i") }}
+                    {% if provider.updatedAt is not null %}
+                        <br>
+                        <span class="text-xs">Last update: {{ provider.updatedAt|date("d/m/Y H:i") }}</span>
+                    {% endif %}
+
+                </td>
+                <td class="w-max h-max md:block flex flex-col">
+                    <a href="/edit/{{ provider.id }}" class="btn btn-sm btn-warning md:mb-0 mb-3">Edit</a>
                     <a href="/delete/{{ provider.id }}" class="btn btn-sm btn-error">Delete</a>
                 </td>
             </tr>
