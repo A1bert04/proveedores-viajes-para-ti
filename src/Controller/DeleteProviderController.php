@@ -13,9 +13,10 @@ class DeleteProviderController extends AbstractController
     {
         $id = $request->attributes->get('id');
         $opConfirmed = $request->query->get('opConfirmed');
+        $page = $request->query->get('page');
 
         if (!$opConfirmed) {
-            return $this->redirectToRoute('index', ['remove' => $id]);
+            return $this->redirectToRoute('index', ['remove' => $id, 'page' => $page]);
         }
 
         $entityManager = $this->getDoctrine()->getManager();

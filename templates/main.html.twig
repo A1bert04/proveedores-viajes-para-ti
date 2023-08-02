@@ -3,51 +3,138 @@
     Providers
 {% endblock %}
 {% block content %}
-<div class="overflow-x-auto">
-    <table class="table table-md">
-        <thead>
-        <tr>
-            <th></th>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Phone</th>
-            <th>Type</th>
-            <th>Active</th>
-            <th>Created At</th>
-            <th class="w-max">Actions</th>
-        </tr>
-        </thead>
-        <tbody>
-        {% for provider in providers %}
-        <tr>
-            <th>{{ provider.id }}</th>
-            <td>{{ provider.name }}</td>
-            <td>{{ provider.email }}</td>
-            <td>{{ provider.phone }}</td>
-            <td>{{ provider.type }}</td>
-            {% if provider.active == 1 %}
-                <td class="text-lime-500">Yes</td>
-            {% else %}
-                <td class="text-red-500">No</td>
-            {% endif %}
-            <td>{{  provider.createdAt|date("Y-m-d H:i:s") }}</td>
-            <td class="w-max">
-                <a href="/edit/{{ provider.id }}" class="btn btn-sm btn-warning">Edit</a>
-                <a href="/delete/{{ provider.id }}" class="btn btn-sm btn-error">Delete</a>
-            </td>
-        </tr>
-        </tbody>
-        {% endfor %}
-    </table>
-</div>
+    <div class="overflow-x-auto">
+        <table class="table table-md">
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Type</th>
+                <th>Active</th>
+                <th>Created At</th>
+                <th class="w-max">Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for provider in providers %}
+            <tr>
+                <td>{{ provider.name }}</td>
+                <td>{{ provider.email }}</td>
+                <td>{{ provider.phone }}</td>
+                <td>{{ provider.type }}</td>
+                {% if provider.active == 1 %}
+                    <td class="text-lime-500">Yes</td>
+                {% else %}
+                    <td class="text-red-500">No</td>
+                {% endif %}
+                <td>{{ provider.createdAt|date("Y-m-d H:i:s") }}</td>
+                <td class="w-max">
+                    <a href="/edit/{{ provider.id }}" class="btn btn-sm btn-warning">Edit</a>
+                    <a href="/delete/{{ provider.id }}" class="btn btn-sm btn-error">Delete</a>
+                </td>
+            </tr>
+            </tbody>
+            {% endfor %}
+        </table>
+    </div>
+    <div class="pagination flex flex-row justify-center my-5">
+        <ul class="pagination">
+            <div class="join">
+                {% if currentPage > 1 %}
+                    <button class="join-item btn" onclick="redirectToPage(1)">
+                        <li class="page-item">
+                            First
+                        </li>
+                    </button>
+                    <button class="join-item btn" onclick="redirectToPage({{ currentPage - 1 }})">
+                        <li class="page-item">
+                            Previous
+                        </li>
+                    </button>
+                {% endif %}
+
+                {% set startPage = 1 %}
+                {% set endPage = totalPages %}
+                {% set maxPagesToShow = 5 %}
+
+                {% if totalPages > maxPagesToShow %}
+                    {% set halfMaxPages = (maxPagesToShow - 1) / 2 %}
+                    {% if currentPage > halfMaxPages %}
+                        {% set startPage = currentPage - halfMaxPages %}
+                        {% if currentPage + halfMaxPages < totalPages %}
+                            {% set endPage = currentPage + halfMaxPages %}
+                        {% else %}
+                            {% set endPage = totalPages %}
+                        {% endif %}
+                    {% else %}
+                        {% set endPage = maxPagesToShow %}
+                    {% endif %}
+
+                    {% if startPage > 1 %}
+                        <li class="page-item">
+                            <button class="join-item btn" onclick="redirectToPage(1)">
+                                ...
+                            </button>
+                        </li>
+                    {% endif %}
+                {% endif %}
+
+                {% for page in startPage..endPage %}
+                    {% if page == currentPage %}
+                        <button class="join-item btn btn-active" onclick="redirectToPage({{ page }})">
+                            <li class="page-item active">
+                                {{ page }}
+                            </li>
+                        </button>
+                    {% else %}
+                        <button class="join-item btn" onclick="redirectToPage({{ page }})">
+                            <li class="page-item">
+                                {{ page }}
+                            </li>
+                        </button>
+                    {% endif %}
+                {% endfor %}
+
+                {% if totalPages > maxPagesToShow %}
+                    {% if endPage < totalPages %}
+                        <li class="page-item">
+                            <button class="join-item btn" onclick="redirectToPage({{ totalPages }})">
+                                ...
+                            </button>
+                        </li>
+                    {% endif %}
+                {% endif %}
+
+                {% if currentPage < totalPages %}
+                    <button class="join-item btn" onclick="redirectToPage({{ currentPage + 1 }})">
+                        <li class="page-item">
+                            Next
+                        </li>
+                    </button>
+                    <button class="join-item btn" onclick="redirectToPage({{ totalPages }})">
+                        <li class="page-item">
+                            Last
+                        </li>
+                    </button>
+                {% endif %}
+            </div>
+        </ul>
+    </div>
+
+    <script>
+        function redirectToPage(pageNumber) {
+            window.location.href = '/?page=' + pageNumber;
+        }
+    </script>
     <dialog id="delete_modal" class="modal">
-        <form method="GET" action="/delete/{{ app.request.query.get('remove')}}" class="modal-box">
+        <form method="GET" action="/delete/{{ app.request.query.get('remove') }}" class="modal-box">
             <h3 class="font-bold text-lg">Ara you sure?</h3>
             <p class="py-4">All the provider data will be removed</p>
             <div class="modal-action">
                 <button type="submit" class="btn btn-error">Delete</button>
             </div>
-            <p class="text-sm text-right py-3">Pres ESC to cancel</p>
+            <p class="text-sm text-right py-3">Click outside to cancel</p>
             <input class="hidden" name="opConfirmed" value="true"/>
         </form>
         <form method="dialog" class="modal-backdrop">
