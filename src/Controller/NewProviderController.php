@@ -22,10 +22,10 @@ class NewProviderController extends AbstractController
 
 
         $form = $this->createFormBuilder($newProvider)
-            ->add('name', TextType::class)
-            ->add('email', EmailType::class, ['required' => true])
-            ->add('phone', TelType::class, ['required' => true])
-            ->add('active', CheckboxType::class, ['required' => false])
+            ->add('name', TextType::class, ['required' => true, 'attr' => ['class' => 'input input-bordered w-full max-w-xs my-3']])
+            ->add('email', EmailType::class, ['required' => true, 'attr' => ['class' => 'input input-bordered w-full max-w-xs my-3']])
+            ->add('phone', TelType::class, ['required' => true, 'attr' => ['class' => 'input input-bordered w-full max-w-xs my-3']])
+            ->add('active', CheckboxType::class, ['required' => false, 'attr' => ['class' => 'toggle block my-3']])
             ->add('type', ChoiceType::class, [
                 'required' => true,
                 'choices' => [
@@ -33,8 +33,9 @@ class NewProviderController extends AbstractController
                     'Pista' => 'Pista',
                     'Complemento' => 'Complemento',
                 ],
+                'attr' => ['class' => 'select select-bordered w-full max-w-xs my-3'],
             ])
-            ->add('save', SubmitType::class, ['label' => 'Add'])
+            ->add('save', SubmitType::class, ['label' => 'Add', 'attr' => ['class' => 'btn btn-neutral w-full text-black']])
             ->getForm();
 
         $form->handleRequest($request);
