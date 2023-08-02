@@ -3,5 +3,4 @@ index:
     controller: App\Controller\MainController::index
 new:
     path: /new
-    methods: GET
     controller: App\Controller\NewProviderController::new
