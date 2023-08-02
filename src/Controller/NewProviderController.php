@@ -44,7 +44,7 @@ class NewProviderController extends AbstractController
             $entityManager->persist($newProvider);
             $entityManager->flush();
 
-            return $this->redirectToRoute('/?success=true');
+            return $this->redirectToRoute('index', ['success' => 'true']);
         }
 
         return $this->render('new.html.twig', [
