@@ -35,7 +35,7 @@
                     {% endif %}
 
                 </td>
-                <td class="w-max h-max md:block flex flex-col">
+                <td class="w-max h-full">
                     <a href="/edit/{{ provider.id }}" class="btn btn-sm btn-warning md:mb-0 mb-3">Edit</a>
                     <a href="/delete/{{ provider.id }}" class="btn btn-sm btn-error">Delete</a>
                 </td>
@@ -62,7 +62,7 @@
 
                 {% set startPage = 1 %}
                 {% set endPage = totalPages %}
-                {% set maxPagesToShow = 5 %}
+                {% set maxPagesToShow = 3 %}
 
                 {% if totalPages > maxPagesToShow %}
                     {% set halfMaxPages = (maxPagesToShow - 1) / 2 %}
