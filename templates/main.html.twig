@@ -13,7 +13,8 @@
             <th>Phone</th>
             <th>Type</th>
             <th>Active</th>
-            <th>Actions</th>
+            <th>Created At</th>
+            <th class="w-max">Actions</th>
         </tr>
         </thead>
         <tbody>
@@ -29,7 +30,11 @@
             {% else %}
                 <td class="text-red-500">No</td>
             {% endif %}
-            <td></td>
+            <td>{{  provider.createdAt|date("Y-m-d H:i:s") }}</td>
+            <td class="w-max">
+                <a href="/providers/{{ provider.id }}/edit" class="btn btn-sm btn-warning">Edit</a>
+                <a href="/providers/{{ provider.id }}/delete" class="btn btn-sm btn-error">Delete</a>
+            </td>
         </tr>
         </tbody>
         {% endfor %}
