@@ -1,18 +1,41 @@
 # Miniproyecto proveedores - Viajes para ti
 ## Descripción
--- A escribir --
+Aplicación de PHP que permite gestionar proveedores que pueden ser de tipo: Hotel, Pista o Complemento.
+Funcionalidades:
+- Operaciones CRUD sobre proveedores (Crear, Leer, Actualizar y Borrar)
+- Sistema de paginación (debe haber más de 10 entradas para que se active)
+- Sistema de filtrado y búsqueda
 ## Tecnologias usadas
 - PHP v8.2
 - Symfony v4
-- MySQL v8 para el motor de la base de datos
-- TailwindCSS (CDN) para los estilos
-- DaysiUI (CDN) para componentes ya hechos
+- Doctrine como ORM (ORM de symfony)
 - Twig para las vistas
+- MySQL v8 para el motor de la base de datos
+- TailwindCSS y DaysiUI (CDN) para los estilos
 ## Cómo ejecutar?
+### En docker
+Para ejecutar la aplicación en docker, se debe tener instalado docker y docker-compose.
+Los pasos a seguir son:
+1. Clonar el repositorio
+```bash
+git clone https://github.com/A1bert04/proveedores-viajes-para-ti
+```
+2. Entrar en la carpeta:
+```bash
+cd proveedores-viajes-para-ti
+```
+3. Ejecutar el siguiente comando. Este creará los contenedores necesarios para ejecutar la aplicación y después creará las tablas de la base de datos.
+```bash
+docker-compose up --build -d && sleep 10 && (docker exec symfony-providers php bin/console doctrine:schema:create > /dev/null 2>&1 || true) && echo "Server running successfully"
+```
+Es importante esperar a que termine de ejecutarse ya que tiene un tiempo de espera de 10s para que se cree la base de datos.
+Una vez finalizado, la aplicación estará disponible el navegador en la url: http://localhost:8000 o la ip que corresponda en caso de ejecutarse en un servidor.
+
 ### En local
-La aplicación está desarrolladao usando symfony, por lo 
-que con las herramientas php y composer instaladas, además
-del servidor de mysql, se puede ejecutar el servidor web siguiendo los pasos:
+La aplicación está desarrollada usando symfony, 
+por lo que si se quiere ejecutar en local, se debe tener instalado php, composer, el cli de symfony y se debe 
+tener el servidor mysql.
+Se puede ejecutar el servidor web siguiendo los pasos:
 1. Clonar el repositorio
 ```bash
 git clone https://github.com/A1bert04/proveedores-viajes-para-ti
@@ -42,18 +65,3 @@ php bin/console doctrine:schema:create
 ```
 
 5. Configurar en el fichero .env la url de conexión a la base de datos.
-
-
-### En docker
-Para ejecutar la aplicación en docker, se debe tener instalado docker y docker-compose.
-Los pasos a seguir son:
-1. Clonar el repositorio
-```bash
-git clone https://github.com/A1bert04/proveedores-viajes-para-ti
-```
-
-2. Ejecutar el siguiente comando. Este creará los contenedores necesarios para ejecutar la aplicación.
-```bash
-cd proveedores-viajes-para-ti
-docker-compose up --build -d && sleep 10 && docker exec symfony-providers php bin/console doctrine:schema:create
-```

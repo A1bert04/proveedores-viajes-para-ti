@@ -1,4 +1,4 @@
-FROM php:8.2-fpm
+FROM php:8.2
 
 WORKDIR /app
 
@@ -19,14 +19,10 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 # Add /usr/local/bin to the PATH
 ENV PATH="${PATH}:/usr/local/bin"
 
-
-# Remove development files and directories
-RUN rm -rf .git
-
 # Install MySQL extension for PHP
 RUN docker-php-ext-install pdo pdo_mysql
 
-# Expose port 8000 (optional, you can use a reverse proxy like Nginx instead)
+# Expose port 8000
 EXPOSE 8000
 
 # Start the Symfony server
