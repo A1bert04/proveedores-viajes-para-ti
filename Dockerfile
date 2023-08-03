@@ -26,4 +26,4 @@ RUN docker-php-ext-install pdo pdo_mysql
 EXPOSE 8000
 
 # Start the Symfony server
-CMD ["sh", "-c", "php -S 0.0.0.0:8000 -t public/"]
+CMD ["sh", "-c", "php bin/console cache:clear && php -S 0.0.0.0:8000 -t public/"]
