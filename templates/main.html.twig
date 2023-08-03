@@ -145,10 +145,54 @@
         </form>
     </dialog>
 
+    <div id="notification" class="hidden rounded-md shadow-lg">
+        <span id="message"></span>
+    </div>
+
+    <style>
+        #notification {
+            position: fixed;
+            /*Center*/
+            left: 50%;
+            top: 3rem;
+            transform: translate(-50%, -50%);
+            z-index: 1000;
+            background-color: #32a400;
+            color: #fff;
+            padding: 10px;
+            border-radius: 5px;
+        }
+    </style>
+
     <script>
         const remove = new URLSearchParams(window.location.search).get('remove');
         if (remove) {
             document.getElementById('delete_modal').showModal();
+        }
+    </script>
+
+    <script>
+        function showNotification(message) {
+            const notification = document.getElementById('notification');
+            const messageSpan = document.getElementById('message');
+            messageSpan.textContent = message;
+            notification.classList.remove('hidden');
+            let duration = 5000;
+            setTimeout(() => {
+                notification.classList.add('hidden');
+            }, duration);
+        }
+
+        switch (new URLSearchParams(window.location.search).get('operation')) {
+            case 'add':
+                showNotification('Provider created successfully');
+                break;
+            case 'edit':
+                showNotification('Provider updated successfully');
+                break;
+            case 'delete':
+                showNotification('Provider deleted successfully');
+                break;
         }
     </script>
 {% endblock %}

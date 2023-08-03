@@ -16,8 +16,16 @@
         <div class="m-3">
             {{ form_widget(form.save) }}
         </div>
+        {{ form_end(form) }}
         <div class="m-3">
-            {{ form_widget(form.cancel) }}
+            <button id="cancelButton" class="hover:text-red-500 font-bold hover:underline ">Cancel</button>
         </div>
     </div>
+
+    <script>
+        const cancelButton = document.getElementById('cancelButton');
+        cancelButton.addEventListener('click', function() {
+            window.location.href = "{{ path('index') }}";
+        });
+    </script>
 {% endblock %}
