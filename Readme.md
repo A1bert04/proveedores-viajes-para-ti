@@ -1,4 +1,4 @@
-# Miniproyecto proveedores - Viajes para ti
+# Apliación proveedores - Viajes para ti
 ## Descripción
 Aplicación de PHP que permite gestionar proveedores que pueden ser de tipo: Hotel, Pista o Complemento.
 ### Funcionalidades
@@ -77,3 +77,28 @@ php bin/console doctrine:schema:create
 ```
 
 5. Configurar en el fichero .env la url de conexión a la base de datos.
+
+# Conclusiones 
+En general, debo decir que me ha gustado mucho 
+aprender Symfony desde cero. 
+La experiencia ha sido enriquecedora y gratificante. 
+Una de las cosas que más me ha impresionado de Symfony
+es la facilidad y eficiencia con la que se pueden realizar 
+tareas comunes de desarrollo gracias a las herramientas que proporciona. 
+Su CLI es muy útil, y permite generar rápidamente diferentes elementos de la aplicación
+como formularios, controladores, paginación, etc.
+
+## A mejorar
+La estructura de la aplicación es sin duda una de
+las cosas a mejorar, al no haber visto anteriormente
+proyectos en producción en Symfony.
+Al no tener experiencia con Twig, aprendí
+algo más tarde sobre temas como los layouts y
+components que definitivamente habrían facilitado la
+experiencia de desarrollo.
+
+También he notado que mi falta de experiencia inicial 
+con Twig me llevó a encontrar soluciones alternativas en 
+lugar de aprovechar plenamente la potencia de Twig y sus características. 
+Una mayor familiaridad con Twig desde el principio habría mejorado la eficiencia 
+del desarrollo y facilitado el mantenimiento de las vistas.
