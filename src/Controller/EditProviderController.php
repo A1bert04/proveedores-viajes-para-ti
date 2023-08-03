@@ -38,7 +38,8 @@ class EditProviderController extends AbstractController
                 ],
                 'attr' => ['class' => 'select select-bordered w-full max-w-xs my-3'],
             ])
-            ->add('save', SubmitType::class, ['label' => 'Save', 'attr' => ['class' => 'btn btn-neutral w-full text-black']])
+            ->add('save', SubmitType::class, ['label' => 'Save', 'attr' => ['class' => 'btn btn-neutral w-full text-black hover:text-white']])
+            ->add('cancel', SubmitType::class, ['label' => 'Cancel', 'attr' => ['class' => 'btn btn-error w-full text-black w-full']])
             ->getForm();
 
         $form->handleRequest($request);
