@@ -1,5 +1,18 @@
 {% extends 'layout.html.twig' %}
 {% block content %}
+<div class="w-full flex flex-col items-center justify-center py-5">
+    <h1 class="text-xl font-bold pb-5">
+        {% if app.request.query.get('search') is not null %}
+            Search results for "{{ app.request.query.get('search') }}"
+        {% else %}
+        List of providers
+        {% endif %}
+    </h1>
+    <form method="get" action="{{ path('index') }}" class="mb-4 flex flex-row">
+        <input type="text" name="search" class="input input-bordered w-full max-w-xs" placeholder="Search...">
+        <button type="submit" class="btn btn-neutral text-black hover:text-white dark:text-white dark:hover:text-white mx-3">Search</button>
+    </form>
+</div>
     <div class="overflow-x-auto">
         <table class="table table-md">
             <thead>

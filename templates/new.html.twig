@@ -8,7 +8,7 @@ Add new provider
     {{ form_start(form) }}
     {{ form_row(form.name) }}
     {{ form_row(form.email) }}
-    {{ form_row(form.phone) }}
+    {{ form_row(form.phone, {'attr': {'id': 'phone-input'}}) }}
     {{ form_row(form.active) }}
     {{ form_row(form.type) }}
 

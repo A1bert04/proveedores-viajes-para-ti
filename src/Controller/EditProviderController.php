@@ -38,7 +38,7 @@ class EditProviderController extends AbstractController
                 ],
                 'attr' => ['class' => 'select select-bordered w-full max-w-xs my-3'],
             ])
-            ->add('save', SubmitType::class, ['label' => 'Save', 'attr' => ['class' => 'btn btn-neutral w-full text-black hover:text-white']])
+            ->add('save', SubmitType::class, ['label' => 'Save', 'attr' => ['class' => 'btn btn-neutral w-full text-black hover:text-white dark:text-white']])
             ->getForm();
 
         $form->handleRequest($request);
