@@ -98,7 +98,5 @@ components que definitivamente habrían facilitado la
 experiencia de desarrollo.
 
 También he notado que mi falta de experiencia inicial 
-con Twig me llevó a encontrar soluciones alternativas en 
+me llevó a encontrar soluciones alternativas en 
 lugar de aprovechar plenamente la potencia de Twig y sus características. 
-Una mayor familiaridad con Twig desde el principio habría mejorado la eficiencia 
-del desarrollo y facilitado el mantenimiento de las vistas.
