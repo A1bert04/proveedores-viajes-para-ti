@@ -24,8 +24,6 @@ services:
       - db
     networks:
       - symfonyinet
-    volumes:
-      - .:/app
     restart: unless-stopped
 volumes:
   mysql:

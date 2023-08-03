@@ -4,7 +4,9 @@ WORKDIR /app
 
 RUN apt-get update && apt-get install -y \
     curl \
-    default-mysql-client
+	default-mysql-client  \
+    zip  \
+    unzip
 
 
 # Install composer
@@ -25,6 +27,7 @@ RUN docker-php-ext-install pdo pdo_mysql
 # Expose port 8000
 EXPOSE 8000
 
+ENV COMPOSER_ALLOW_SUPERUSER=1
 # Install dependencies
 RUN composer install
 
