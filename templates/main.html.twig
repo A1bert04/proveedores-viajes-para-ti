@@ -1,31 +1,128 @@
 {% extends 'layout.html.twig' %}
 {% block content %}
-<div class="w-full flex flex-col items-center justify-center py-5">
-    <h1 class="text-xl font-bold pb-5">
-        {% if app.request.query.get('search') is not null %}
-            <a href="{{ path('index') }}" class="text-red-500 hover:text-red-700">
-                <i class="fa-solid fa-arrow-left"></i>
-            </a>
-            Search results for "{{ app.request.query.get('search') }}"
-        {% else %}
-        List of providers
-        {% endif %}
-    </h1>
-    <form method="get" action="{{ path('index') }}" class="mb-4 flex flex-row">
-        <input type="text" name="search" class="input input-bordered w-full max-w-xs" placeholder="Search...">
-        <button type="submit" class="btn btn-neutral text-black hover:text-white dark:text-white dark:hover:text-white mx-3">Search</button>
-    </form>
-</div>
+    <div class="w-full flex flex-col items-center justify-center py-5">
+        <h1 class="text-xl font-bold pb-5">
+            {% if app.request.query.get('search') is not null %}
+                <a href="{{ path('index') }}" class="text-red-500 hover:text-red-700">
+                    <i class="fa-solid fa-arrow-left"></i>
+                </a>
+                Search results for "{{ app.request.query.get('search') }}"
+            {% else %}
+                List of providers
+            {% endif %}
+        </h1>
+        <form method="get" action="{{ path('index') }}" class="mb-4 flex flex-row">
+            <input type="text" name="search" class="input input-bordered w-full max-w-xs" placeholder="Search...">
+            <button type="submit"
+                    class="btn btn-neutral text-black hover:text-white dark:text-white dark:hover:text-white mx-3">
+                Search
+            </button>
+        </form>
+    </div>
     <div class="overflow-x-auto">
         <table class="table table-md">
             <thead>
             <tr>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Phone</th>
-                <th>Type</th>
-                <th>Active</th>
-                <th>Created At</th>
+                <th>Name
+                    {% if app.request.query.get('sortby') == 'name' and app.request.query.get('ord') == 'asc' %}
+                        <span class="text-gray-600 dark:text-white">
+                        <a href="/?sortby=name&ord=asc" class="pl-1 text-green-400 text-lg"><i
+                                    class="fa-solid fa-arrow-up"></i></a>
+                        <a href="/?sortby=name&ord=desc" class="pl-1"><i
+                                    class="fa-solid fa-arrow-down hover:text-blue-500 hover:scale-150"></i></a>
+                        </span>
+                    {% elseif app.request.query.get('sortby') == 'name' and app.request.query.get('ord') == 'desc' %}
+                        <span class="text-gray-600 dark:text-white">
+                        <a href="/?sortby=name&ord=asc" class="pl-1"><i
+                                    class="fa-solid fa-arrow-up hover:text-blue-500 hover:scale-150"></i></a>
+                        <a href="/?sortby=name&ord=desc" class="pl-1 text-red-400 text-lg"><i
+                                    class="fa-solid fa-arrow-down"></i></a>
+                        </span>
+                    {% else %}
+                        <span class="text-gray-600 dark:text-white">
+                        <a href="/?sortby=name&ord=asc" class="pl-1"><i
+                                    class="fa-solid fa-arrow-up hover:text-blue-500 hover:scale-150"></i></a>
+                        <a href="/?sortby=name&ord=desc" class="pl-1"><i
+                                    class="fa-solid fa-arrow-down hover:text-blue-500 hover:scale-150"></i></a>
+                        </span>
+                    {% endif %}
+                </th>
+                <th>Email
+                    {% if app.request.query.get('sortby') == 'email' and app.request.query.get('ord') == 'asc' %}
+                        <span class="text-gray-600 dark:text-white">
+                        <a href="/?sortby=email&ord=asc" class="pl-1 text-green-400 text-lg"><i
+                                    class="fa-solid fa-arrow-up"></i></a>
+                        <a href="/?sortby=email&ord=desc" class="pl-1"><i
+                                    class="fa-solid fa-arrow-down hover:text-blue-500 hover:scale-150"></i></a>
+                        </span>
+                    {% elseif app.request.query.get('sortby') == 'email' and app.request.query.get('ord') == 'desc' %}
+                        <span class="text-gray-600 dark:text-white">
+                        <a href="/?sortby=email&ord=asc" class="pl-1"><i
+                                    class="fa-solid fa-arrow-up hover:text-blue-500 hover:scale-150"></i></a>
+                        <a href="/?sortby=email&ord=desc" class="pl-1 text-red-400 text-lg"><i
+                                    class="fa-solid fa-arrow-down"></i></a>
+                        </span>
+                    {% else %}
+                        <span class="text-gray-600 dark:text-white">
+                        <a href="/?sortby=email&ord=asc" class="pl-1"><i
+                                    class="fa-solid fa-arrow-up hover:text-blue-500 hover:scale-150"></i></a>
+                        <a href="/?sortby=email&ord=desc" class="pl-1"><i
+                                    class="fa-solid fa-arrow-down hover:text-blue-500 hover:scale-150"></i></a>
+                        </span>
+                    {% endif %}
+                </th>
+                <th>Phone
+                    {% if app.request.query.get('sortby') == 'phone' and app.request.query.get('ord') == 'asc' %}
+                        <span class="text-gray-600 dark:text-white">
+                        <a href="/?sortby=phone&ord=asc" class="pl-1 text-green-400 text-lg"><i
+                                    class="fa-solid fa-arrow-up"></i></a>
+                        <a href="/?sortby=phone&ord=desc" class="pl-1"><i
+                                    class="fa-solid fa-arrow-down hover:text-blue-500 hover:scale-150"></i></a>
+                        </span>
+                    {% elseif app.request.query.get('sortby') == 'phone' and app.request.query.get('ord') == 'desc' %}
+                        <span class="text-gray-600 dark:text-white">
+                        <a href="/?sortby=phone&ord=asc" class="pl-1"><i
+                                    class="fa-solid fa-arrow-up hover:text-blue-500 hover:scale-150"></i></a>
+                        <a href="/?sortby=phone&ord=desc" class="pl-1 text-red-400 text-lg"><i
+                                    class="fa-solid fa-arrow-down"></i></a>
+                        </span>
+                    {% else %}
+                        <span class="text-gray-600 dark:text-white">
+                        <a href="/?sortby=phone&ord=asc" class="pl-1"><i
+                                    class="fa-solid fa-arrow-up hover:text-blue-500 hover:scale-150"></i></a>
+                        <a href="/?sortby=phone&ord=desc" class="pl-1"><i
+                                    class="fa-solid fa-arrow-down hover:text-blue-500 hover:scale-150"></i></a>
+                        </span>
+                    {% endif %}
+                </th>
+                <th>Type
+                </th>
+                <th>Active
+                </th>
+                <th>Created At
+                    {% if app.request.query.get('sortby') == 'createdAt' and app.request.query.get('ord') == 'asc' %}
+                        <span class="text-gray-600 dark:text-white">
+                        <a href="/?sortby=createdAt&ord=asc" class="pl-1 text-green-400 text-lg"><i
+                                    class="fa-solid fa-arrow-up"></i></a>
+                        <a href="/?sortby=createdAt&ord=desc" class="pl-1"><i
+                                    class="fa-solid fa-arrow-down hover:text-blue-500 hover:scale-150"></i></a>
+                        </span>
+                    {% elseif app.request.query.get('sortby') == 'createdAt' and app.request.query.get('ord') == 'desc' %}
+                        <span class="text-gray-600 dark:text-white">
+                        <a href="/?sortby=createdAt&ord=asc" class="pl-1"><i
+                                    class="fa-solid fa-arrow-up hover:text-blue-500 hover:scale-150"></i></a>
+                        <a href="/?sortby=createdAt&ord=desc" class="pl-1 text-red-400 text-lg"><i
+                                    class="fa-solid fa-arrow-down"></i></a>
+                        </span>
+                    {% else %}
+                        <span class="text-gray-600 dark:text-white">
+                        <a href="/?sortby=createdAt&ord=asc" class="pl-1"><i
+                                    class="fa-solid fa-arrow-up hover:text-blue-500 hover:scale-150"></i></a>
+                        <a href="/?sortby=createdAt&ord=desc" class="pl-1"><i
+                                    class="fa-solid fa-arrow-down hover:text-blue-500 hover:scale-150"></i></a>
+                        </span>
+                    {% endif %}
+                </th>
                 <th class="w-max">Actions</th>
             </tr>
             </thead>

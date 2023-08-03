@@ -1,17 +1,29 @@
 # Miniproyecto proveedores - Viajes para ti
 ## Descripción
 Aplicación de PHP que permite gestionar proveedores que pueden ser de tipo: Hotel, Pista o Complemento.
-Funcionalidades:
-- Operaciones CRUD sobre proveedores (Crear, Leer, Actualizar y Borrar)
-- Sistema de paginación (debe haber más de 10 entradas para que se active)
-- Sistema de filtrado y búsqueda
+### Funcionalidades
+Todas las funcionalidades básicas: 
+
+&#10004; Operaciones CRUD sobre proveedores (Crear, Leer, Actualizar y Borrar) <br>
+&#10004; Ver la fecha y hora de creación <br>
+&#10004; Ver la fecha y hora de la última actualización <br>
+&#10004; Responsive <br>
+&#10004; Se puede desplegar usando docker <br>
+
+Funcionalidades añadidas:
+
+&#10004; Sistema de paginación (debe haber más de 10 entradas para que se active) <br>
+&#10004; Sistema de búsqueda <br>
+&#10004; Poder ordenar por cualquier campo <br>
+&#10004; Feedback visual de las acciones realizadas (popups) <br>
+
 ## Tecnologias usadas
 - PHP v8.2
 - Symfony v4
 - Doctrine como ORM (ORM de symfony)
 - Twig para las vistas
 - MySQL v8 para el motor de la base de datos
-- TailwindCSS y DaysiUI (CDN) para los estilos
+- TailwindCSS, DaysiUI y FontAwesome para los estilos
 ## Cómo ejecutar?
 ### En docker
 Para ejecutar la aplicación en docker, se debe tener instalado docker y docker-compose.
