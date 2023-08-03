@@ -100,3 +100,6 @@ experiencia de desarrollo.
 También he notado que mi falta de experiencia inicial 
 me llevó a encontrar soluciones alternativas en 
 lugar de aprovechar plenamente la potencia de Twig y sus características. 
+
+Si volviera a hacer el proyecto, con más tiempo, me informaria de todas las facilidades que ofrecen Doctrine y Symfony, y habria hecho uso de mejores prácticas durante el desarrollo.
+Por otro lado, también hubiera implementado testing y un Dockerfile mas limpio para el despliegue.
