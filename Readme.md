@@ -36,9 +36,9 @@ git clone https://github.com/A1bert04/proveedores-viajes-para-ti
 ```bash
 cd proveedores-viajes-para-ti
 ```
-3. Ejecutar el siguiente comando. Este creará los contenedores necesarios para ejecutar la aplicación y después creará las tablas de la base de datos.
+3. Ejecutar el siguiente comando. Este creará los contenedores necesarios para ejecutar la aplicación y después creará las tablas de la base de datos (podria requerir permisos de administración).
 ```bash
-docker-compose up --build -d && sleep 10 && (docker exec symfony-providers php bin/console doctrine:schema:create > /dev/null 2>&1 || true) && echo "Server running successfully"
+docker compose up --build -d && sleep 10 && (docker exec symfony-providers php bin/console doctrine:schema:create > /dev/null 2>&1 || true) && echo "Server running successfully"
 ```
 Es importante esperar a que termine de ejecutarse ya que tiene un tiempo de espera de 10s para que se cree la base de datos.
 Una vez finalizado, la aplicación estará disponible el navegador en la url: http://localhost:8000 o la ip que corresponda en caso de ejecutarse en un servidor.
