@@ -25,5 +25,8 @@ RUN docker-php-ext-install pdo pdo_mysql
 # Expose port 8000
 EXPOSE 8000
 
+# Install dependencies
+RUN composer install
+
 # Start the Symfony server
 CMD ["sh", "-c", "php bin/console cache:clear && php -S 0.0.0.0:8000 -t public/"]
